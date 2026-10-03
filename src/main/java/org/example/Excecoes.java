@@ -60,6 +60,8 @@ public class Excecoes {
             //Se a divisão deu erro do tipo ArithmeticException, o programa cai aqui.
             //Mostra a mensagem que o enunciado pede.
             //Se não deu erro, o catch é pulado.
+        } finally {
+                System.out.println("Fim da divisão.");
         }
         System.out.println();
 
