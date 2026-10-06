@@ -1,12 +1,12 @@
-package org.example;
+package org.example.Aula26092026;
 
 public class Aluna {
-    public String nome;
-    public double nota;
-    public double nota2;
-    public double media;
-    public boolean passou;
-    public String situacao;
+    String nome;
+    double nota;
+    double nota2;
+    double media;
+    boolean passou;
+    String situacao;
 
 }
 

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Aula23092026;
 
 public class Concatenacao {
     static void main() {
