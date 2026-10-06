@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Aula24092026;
 
 public class EstruturaDecisao {
 

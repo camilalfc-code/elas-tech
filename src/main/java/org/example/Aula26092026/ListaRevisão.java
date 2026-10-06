@@ -1,4 +1,6 @@
-package org.example;
+package org.example.Aula26092026;
+
+import org.example.Aluna;
 
 import java.util.Scanner;
 
