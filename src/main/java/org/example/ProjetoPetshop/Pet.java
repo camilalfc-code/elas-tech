@@ -17,6 +17,11 @@ public class Pet {
         }
     }
 
+    void cadastrarPet(String nome, String especie, double peso) {
+
+    }
+
+
     void emitirSom() {
         System.out.println(nome + " faz um som.");
     }

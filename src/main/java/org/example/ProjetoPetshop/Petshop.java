@@ -46,163 +46,44 @@ public class Petshop {
             switch (opcao) {
 
                 case 1:
-
-                    Pet meuPet;
-                    System.out.println();
-
-                    String nome = lerTexto(sc, "Nome do pet: ");
-
-                    String especie = lerTexto(sc, "Espécie: ");
-                    if (especie.equalsIgnoreCase("cachorro")) {
-                        meuPet = new Cachorro();
-                    } else if (especie.equalsIgnoreCase("gato")) {
-                        meuPet = new Gato();
-                    } else {
-                        meuPet = new Pet();
-                    }
-
-                    meuPet.nome = nome;
-                    meuPet.especie = especie;
-
-                    meuPet.peso = lerPeso(sc, "Peso (kg): ");
-
-                    meuPet.porte = meuPet.definirPorte();
-
-                    lista.add(meuPet);
-                    System.out.println("Pet cadastrado! Agora são " + lista.size() + " pet(s).");
-                    System.out.println();
-
-                    break;
+                new CadastrarPet().executar(sc, lista);
+                break;
 
                 case 2:
-                    if (lista.isEmpty()) {
-                        System.out.println("Nenhum pet cadastrado.");
-                    } else {
-                        System.out.println("--- PETS CADASTRADOS ---");
-                        for (int i = 0; i < lista.size(); i++) {
-                            Pet p = lista.get(i);
-                            System.out.println(p.nome + " (" + p.especie + ") - " + p.peso + " kg - Porte " + p.porte);
-                            p.emitirSom();
-                            if (p instanceof Cachorro) {
-                                Cachorro c = (Cachorro) p;
-                                c.buscarBolinha();
-                            }
-                        }
-                        mostrar(lista.get(0));
-                        System.out.println("---");
-                        mostrar(lista.get(0), "=== FICHA DO PET ===");
-                    }
-                    System.out.println();
-                    break;
-
+                new ListarPets().executar(lista);
+                break;
 
                 case 3:
-                    System.out.print("Qual pet você procura? ");
-                    String busca = sc.nextLine();
-
-                    boolean achou = false;
-
-                    for (int i = 0; i < lista.size(); i++) {
-                        Pet p = lista.get(i);
-                        if (p.nome.equalsIgnoreCase(busca)) {
-                            System.out.println("Encontrado: " + p.nome + " (" + p.especie + ") - " + p.peso + " kg");
-                            achou = true;
-                        }
-                    }
-
-                    if (!achou) {
-                        System.out.println("Pet não encontrado.");
-                    }
-
-                    System.out.println();
-                    break;
+                new BuscarPet().executar(sc, lista);
+                break;
 
                 case 4:
-
-                    HashSet<String> especies = new HashSet<>();
-
-                    for (int i = 0; i < lista.size(); i++) {
-                        especies.add(lista.get(i).especie.toLowerCase());
-                    }
-
-                    System.out.println("--- ESPÉCIES CADASTRADAS ---");
-                    for (String esp : especies) {
-                        System.out.println("- " + esp);
-                    }
-                    System.out.println("Total de espécies diferentes: " + especies.size());
-                    System.out.println();
-                    break;
+                new ListarEspecies().executar(lista);
+                break;
 
                 case 5:
-                    System.out.print("Nome do pet pra entrar na fila: ");
-                    String nomeFila = sc.nextLine();
-                    fila.add(nomeFila);
-                    System.out.println(nomeFila + " entrou na fila.");
-                    System.out.println("Fila agora: " + fila);
-                    System.out.println();
-                    break;
+                new EntrarNaFila().executar(sc,fila);
+                break;
 
                 case 6:
-                    if (fila.isEmpty()) {
-                        System.out.println("A fila está vazia.");
-                    } else {
-                        System.out.println("Próximo da fila: " + fila.peek());
-                        String atendido = fila.poll();
-                        System.out.println("Atendendo " + atendido + "...");
-                        System.out.println("Fila agora: " + fila);
-                    }
-                    System.out.println();
-                    break;
+                new AtenderProximo().executar(fila);
+                break;
 
                 case 7:
-                    System.out.print("Nome do pet: ");
-                    String nomeServico = sc.nextLine();
-
-                    for (Servico servico : servicos) {
-                        servico.executar(nomeServico);
-                    }
-
-                    System.out.println();
-                    break;
+                new ExecutarServicos().executar(sc, servicos);
+                break;
 
                 case 8:
-                    System.out.println("Pets cadastrados: " + lista.size());
-                    System.out.println();
-                    break;
+                new QuantidadePets().executar(lista);
+                break;
 
                 case 9:
-                    if (fila.isEmpty()) {
-                        System.out.println("A fila está vazia.");
-                    } else {
-                        while (!fila.isEmpty()) {
-                            String atendido = fila.poll();
-                            System.out.println("Atendendo " + atendido + "...");
-                        }
-                        System.out.println("Fila vazia, todos foram atendidos!");
-                    }
-                    System.out.println();
-                    break;
+                new AtenderTodos().executar(fila);
+                break;
 
                 case 10:
-                    System.out.print("Qual porte (Pequeno, Médio ou Grande)? ");
-                    String porteBusca = sc.nextLine();
-
-                    boolean achouPorte = false;
-
-                    for (int i = 0; i < lista.size(); i++) {
-                        Pet p = lista.get(i);
-                        if (p.porte.equalsIgnoreCase(porteBusca)) {
-                            System.out.println(p.nome + " (" + p.especie + ") - " + p.peso + " kg - Porte " + p.porte);
-                            achouPorte = true;
-                        }
-                    }
-
-                    if (!achouPorte) {
-                        System.out.println("Nenhum pet desse porte.");
-                    }
-
-                    System.out.println();
-                    break;
+                new ListarPorPorte().executar(sc, lista);
+                break;
 
                 case 0:
                     System.out.println("Até logo!");
