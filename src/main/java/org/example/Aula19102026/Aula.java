@@ -6,9 +6,5 @@ package org.example.Aula19102026;
     //Boneca boneca = new Boneca();
     //boneca.nome = "Barbie";
     //boneca.corCabelo = "Loiro";
-
-
     //}
-
-
 //}
