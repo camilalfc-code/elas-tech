@@ -1,5 +1,8 @@
 package org.example.Aula20102026.Interfaces;
 
+import lombok.Builder;
+
+@Builder
 public class Agendamento {
 
     private String nomePet;
@@ -8,21 +11,9 @@ public class Agendamento {
     private boolean perfume;
     private boolean laco;
     private boolean hidratacao;
-    private String observacao;
+    @Builder.Default
+    private String observacao = "";
     private double desconto;
-
-    public Agendamento(String nomePet, String servico, String horario,
-                       boolean perfume, boolean laco, boolean hidratacao,
-                       String observacao, double desconto) {
-        this.nomePet = nomePet;
-        this.servico = servico;
-        this.horario = horario;
-        this.perfume = perfume;
-        this.laco = laco;
-        this.hidratacao = hidratacao;
-        this.observacao = observacao;
-        this.desconto = desconto;
-    }
 
     public void mostrar() {
         System.out.println("Pet: " + nomePet);
@@ -37,3 +28,15 @@ public class Agendamento {
     }
 
 }
+//new Agendamento
+// ("Thor", "banho", "14h", true, true, false, "alérgico a shampoo", 10.0);
+//não dá pra saber, os valores ficam “sem rótulo”.
+
+//Pergunta 2: se você trocar a ordem do perfume e do laço sem querer
+// no construtor gigante, o código compila? E alguém perceberia o
+// erro?
+//acho que compila mas nao sei se alguem perceberia acho que nao
+
+//Pergunta 3: no agendamento da Luna, usando o construtor gigante,
+// quantos valores você digitou só pra dizer “não quero isso”?
+//5

@@ -1,21 +1,21 @@
 package org.example.Aula20102026.Interfaces;
 
-public class MySql implements BancoDeDados{
+//public class MySql implements BancoDeDados{
 
     //@Override
     //public void proibidoBarulhoAposDezHoras() {
     //}
 
-    @Override
-    public String chamarBanco() {
-        return "O Banco conectado é o MySql.";
-    }
+    //@Override
+    //public String chamarBanco() {
+        //return "O Banco conectado é o MySql.";
+    //}
 
-    @Override
-    public int getNumero() {
-        return 1;
-    }
-}
+    //@Override
+   // public int getNumero() {
+        //return 1;
+    //}
+//}
 
     /*
     a classe MySql

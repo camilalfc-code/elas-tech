@@ -30,7 +30,7 @@ laco (boolean)
 hidratacao (boolean)
 observacao (String)
 desconto (double)
-Crie um método mostrar() que imprime tudo.
+Crie um metodo mostrar() que imprime tudo.
 
 Na Main, crie 3 agendamentos:
 a) Thor, banho, 14h, com perfume e laço, sem hidratação,

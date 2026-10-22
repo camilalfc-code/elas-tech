@@ -1,43 +1,31 @@
 package org.example.Aula20102026.Interfaces;
 
-//public class Main {
-
-    //static void main() {
-        //MySql mySql = new MySql();
-        //MongoDb mongoDb = new MongoDb();
-        //BancoDeDados oracle = new MongoDb();
-        //mongoDb.pessoa = "";
-        //BancoDeDados mongo = new MongoDb();
-        //BancoDeDados outroBanco = new MongoDb();
-        //conectarBanco(MySql);
-    //}
-    //public static void conectarBanco(BancoDeDados bd){
-    //}
-
-    //public static void main(String[] args) {
-        //conectarBanco(new MySql());
-        //conectarBanco(new Oracle());
-
-        //System.out.println();
-    //}
-
-    //public static void conectarBanco(BancoDeDados banco) {
-        //System.out.println(banco.chamarBanco());
-       // System.out.println("Número do banco: " + banco.getNumero());
-   // }
-
     public class Main {
 
         public static void main(String[] args) {
 
-            Agendamento a = new Agendamento("Thor", "banho", "14h",
-                    true, true, false, "alérgico a shampoo", 10.0);
+            Agendamento a = Agendamento.builder()
+                    .nomePet("Thor")
+                    .servico("banho")
+                    .horario("14h")
+                    .perfume(true)
+                    .laco(true)
+                    .observacao("alérgico a shampoo")
+                    .desconto(10.0)
+                    .build();
 
-            Agendamento b = new Agendamento("Luna", "tosa", "10h",
-                    false, false, false, "", 0.0);
+            Agendamento b = Agendamento.builder()
+                    .nomePet("Luna")
+                    .servico("tosa")
+                    .horario("10h")
+                    .build();
 
-            Agendamento c = new Agendamento("Mel", "banho", "16h",
-                    false, false, true, "", 0.0);
+            Agendamento c = Agendamento.builder()
+                    .nomePet("Mel")
+                    .servico("banho")
+                    .horario("16h")
+                    .hidratacao(true)
+                    .build();
 
             a.mostrar();
             b.mostrar();
@@ -45,7 +33,31 @@ package org.example.Aula20102026.Interfaces;
         }
     }
 
+//public class Main {
 
+//static void main() {
+//MySql mySql = new MySql();
+//MongoDb mongoDb = new MongoDb();
+//BancoDeDados oracle = new MongoDb();
+//mongoDb.pessoa = "";
+//BancoDeDados mongo = new MongoDb();
+//BancoDeDados outroBanco = new MongoDb();
+//conectarBanco(MySql);
+//}
+//public static void conectarBanco(BancoDeDados bd){
+//}
+
+//public static void main(String[] args) {
+//conectarBanco(new MySql());
+//conectarBanco(new Oracle());
+
+//System.out.println();
+//}
+
+//public static void conectarBanco(BancoDeDados banco) {
+//System.out.println(banco.chamarBanco());
+// System.out.println("Número do banco: " + banco.getNumero());
+// }
 
 /*
 o conectarBanco() na Main

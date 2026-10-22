@@ -1,17 +1,17 @@
 package org.example.Aula20102026.Interfaces;
 
-public class Oracle implements BancoDeDados {
+//public class Oracle implements BancoDeDados {
 
-    @Override
-    public String chamarBanco() {
-        return "O Banco conectado é o Oracle.";
-    }
+   // @Override
+   // public String chamarBanco() {
+       // return "O Banco conectado é o Oracle.";
+    //}
 
-    @Override
-    public int getNumero() {
-        return 2;
-    }
-}
+   // @Override
+   // public int getNumero() {
+       // return 2;
+   // }
+//}
 
 /*
 a classe Oracle
