@@ -4,23 +4,23 @@ package org.example;
 Projeto 1 - Sistema de Restaurante
 100 pontos
 
-
 Projeto 1 — Sistema de Restaurante
-Domi
-O que éngo, 01/11, até 23h59
 
 Você vai construir o sistema de um restaurante:
 cardápio, pedidos, personalização dos lanches e fechamento do dia.
 
 Construa uma parte de cada vez.
 
-Se algo quebrar depois, você pode voltar para uma versão que estava funcionando.
+Se algo quebrar depois, você pode voltar para uma versão que estava
+funcionando.
 
 Implemente frase a frase.
-Não lembra como implementa uma coisa? Pega o código no slide ou com uma IA apenas daquilo, não da questão inteira.
+Não lembra como implementa uma coisa? Pega o código no slide ou com
+uma IA apenas daquilo, não da questão inteira.
 
 Antes de tudo: cinco minutos hoje
-Crie o projeto novo do jeito que você já sabe e copie o bloco do JUnit do pom.xml do projeto que a gente usou
+Crie o projeto novo do jeito que você já sabe e copie o bloco do
+JUnit do pom.xml do projeto que a gente usou
 na aula de testes.
 Depois, escreva este teste em src/test/java e rode:
 @Test
@@ -30,7 +30,8 @@ assertEquals(4, 2 + 2);
 
 Está tudo certo, pode começar e pode apagar esse teste.
 
-Isso leva cinco minutos e evita que você descubra na sexta à noite que o JUnit não está respondendo.
+Isso leva cinco minutos e evita que você descubra na sexta à noite que
+o JUnit não está respondendo.
 Se precisar, o bloco do pom.xml é este (Coloque dentro de <dependencies> COLOQUE AQUI DENTRO</dependencies>):
 <dependency>
 <groupId>org.junit.jupiter</groupId>
@@ -41,7 +42,8 @@ Se precisar, o bloco do pom.xml é este (Coloque dentro de <dependencies> COLOQU
 
 Os pacotes
 Crie estes pacotes dentro do seu projeto.
-Essa organização não é decoração: é como um projeto se organiza para que cada parte tenha uma responsabilidade.
+Essa organização não é decoração: é como um projeto se organiza para
+que cada parte tenha uma responsabilidade.
 
 Contém o Main, o MenuConsole e a RestauranteFacade. Use no Nível 1.
 Contém Lanche, ItemCardapio, a factory e os adicionais. Use nos Níveis 1 e 2.
@@ -53,14 +55,17 @@ o menu conversa com a pessoa.
 A fachada coordena as operações.
 As classes de negócio guardam os dados e fazem o trabalho que lhes cabe.
 
-O Main não deve fazer cálculos, manipular diretamente as coleções do sistema ou imprimir mensagens para a pessoa.
+O Main não deve fazer cálculos, manipular diretamente as coleções do sistema
+ou imprimir mensagens para a pessoa.
 Ele controla o fluxo principal e delega a interação ao MenuConsole.
 
-O pacote financeiro só precisa existir quando você criar uma classe para colocar nele.
+O pacote financeiro só precisa existir quando você criar uma classe para
+colocar nele.
 O Git não versiona pastas vazias, e isso é normal.
 
 A RestauranteFacade fica em app por simplicidade.
-Num sistema grande ela poderia ter um pacote próprio, mas, com esse tamanho de projeto, não compensa separar.
+Num sistema grande ela poderia ter um pacote próprio, mas, com esse tamanho
+de projeto, não compensa separar.
 
 NÍVEL 1 — O restaurante abre
 
@@ -81,8 +86,10 @@ setNome(nome);
 setPreco(preco);
 }
 Assim, a validação fica centralizada.
-Se você criar um objeto pelo construtor ou alterar um atributo pelo setter, as regras continuam valendo.
-Se um valor for inválido, lance uma exceção adequada, como IllegalArgumentException (Throw new IllegalArgumentException)
+Se você criar um objeto pelo construtor ou alterar um atributo pelo setter,
+as regras continuam valendo.
+Se um valor for inválido, lance uma exceção adequada, como
+IllegalArgumentException (Throw new IllegalArgumentException)
 
 1.2 — A classe Pedido
 Crie a classe Pedido no pacote pedido.
@@ -90,17 +97,20 @@ Cada pedido precisa ter:
 Um número identificador (int)
 O nome do cliente (String)
 Uma lista de lanches (ArrayList<Lanche> itens)
+
 E os métodos:
 adicionarItem(Lanche lanche) — acrescenta um lanche na lista
 getItens() — devolve a lista para quem for exibir
-calcularTotal() — percorre a lista com um for somando os preços e devolve o double
+calcularTotal() — percorre a lista com um for somando os preços e devolve o
+double
 ⚠️ Valide o nome do cliente no construtor (ou no setter): não pode ser vazio.
 Lance IllegalArgumentException se for null ou .trim().isEmpty().
-💡 O Pedido não sabe quantos pedidos existem no restaurante, e não guarda um HashMap.
-Ele cuida de uma comanda só. Quem guarda todos os pedidos é o GerenciadorPedidos, no item 1.3 — e é lá que está o
+💡 O Pedido não sabe quantos pedidos existem no restaurante, e não guarda
+um HashMap.
+Ele cuida de uma comanda só. Quem guarda todos os pedidos é o
+GerenciadorPedidos, no item 1.3 — e é lá que está o
 contador que gera o número.
 💡 O número chega pronto pelo construtor. O Pedido não cria o próprio número:
-
 public Pedido(int numero, String nomeCliente) {
 this.numero = numero;
 setNomeCliente(nomeCliente);
