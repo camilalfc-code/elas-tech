@@ -4,11 +4,26 @@ import cardapio.ItemCardapio;
 import pedido.Pedido;
 
 import java.util.HashSet;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuConsole {
 
     private Scanner sc = new Scanner(System.in);
+
+    private int lerInteiro(String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            try {
+                int numero = sc.nextInt();
+                sc.nextLine();
+                return numero;
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Entrada inválida. Digite apenas números.");
+            }
+        }
+    }
 
     public void exibirMenu() {
         System.out.println("=== RESTAURANTE ===");
@@ -30,11 +45,8 @@ public class MenuConsole {
     }
 
     public int lerOpcao() {
-        System.out.print("Escolha uma opção: ");
-        int opcao = sc.nextInt();
-        sc.nextLine();
-        return opcao;
-        }
+        return lerInteiro("Escolha uma opção: ");
+    }
 
 
     public String lerNomeCliente() {
@@ -43,10 +55,7 @@ public class MenuConsole {
     }
 
     public int lerNumeroPedido() {
-        System.out.print("Número do pedido: ");
-        int numero = sc.nextInt();
-        sc.nextLine();
-        return numero;
+        return lerInteiro("Número do pedido: ");
     }
 
     public int lerOpcaoLanche() {
@@ -54,10 +63,7 @@ public class MenuConsole {
         System.out.println("1 - X-Burger - R$ 16,00");
         System.out.println("2 - X-Salada - R$ 18,00");
         System.out.println("3 - X-Bacon - R$ 22,00");
-        System.out.print("Qual lanche você quer? ");
-        int opcao = sc.nextInt();
-        sc.nextLine();
-        return opcao;
+        return lerInteiro("Qual lanche você quer? ");
     }
 
     public boolean perguntarMaisItem() {
@@ -91,10 +97,7 @@ public class MenuConsole {
     }
 
     public int lerNumeroItem() {
-        System.out.print("Número do item: ");
-        int numero = sc.nextInt();
-        sc.nextLine();
-        return numero;
+        return lerInteiro("Número do item: ");
     }
 
     public void exibirFechamentoDoDia(double total, HashSet<String> combinacoes) {

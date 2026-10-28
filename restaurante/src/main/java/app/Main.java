@@ -60,35 +60,48 @@ public class Main {
                                     }
                                     break;
                                 }
-                                case 3: {
-                                    double total = sistema.calcularTotalDoDia();
-                                    menu.exibirFechamentoDoDia(total, sistema.getCombinacoes());
+                                case 3:
+                                    if (sistema.cancelarPedido(numero)) {
+                                        menu.exibirMensagem("Pedido cancelado.");
+                                        opcaoMod = 0;
+                                    } else {
+                                        menu.exibirMensagem("Não foi possível cancelar o pedido.");
+                                    }
                                     break;
-                                }
                             }
                         } while (opcaoMod != 0);
                     }
                     break;
                 }
+
+                default:
+                    if (opcao != 0) {
+                        menu.exibirMensagem("Opção inválida.");
+                    }
+                    break;
             }
         } while (opcao != 0);
-    }
+
+                }
 
     private static void adicionarItens(MenuConsole menu, RestauranteFacade sistema, Pedido pedido) {
+        boolean maisItens;
         do {
             int escolha = menu.lerOpcaoLanche();
             Lanche lanche = sistema.criarLanche(escolha);
 
             if (lanche == null) {
                 menu.exibirMensagem("Opção inválida.");
+                maisItens = true;
             } else {
                 if (menu.perguntarRetirar("queijo")) lanche.setQueijo(false);
                 if (menu.perguntarRetirar("alface")) lanche.setAlface(false);
                 if (menu.perguntarRetirar("tomate")) lanche.setTomate(false);
                 if (menu.perguntarRetirar("cebola")) lanche.setCebola(false);
                 sistema.adicionarItem(pedido, lanche);
+                maisItens = menu.perguntarMaisItem();
             }
-        } while (menu.perguntarMaisItem());
+        } while (maisItens);
     }
 
 }
