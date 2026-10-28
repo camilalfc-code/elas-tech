@@ -1,5 +1,6 @@
 package app;
 
+import cardapio.ItemCardapio;
 import cardapio.Lanche;
 import cardapio.LancheFactory;
 import pedido.GerenciadorPedidos;
@@ -15,23 +16,21 @@ public class RestauranteFacade {
         return gerenciador.criarPedido(nomeCliente);
     }
 
-    public boolean adicionarLanche(Pedido pedido, int opcao) {
-        Lanche lanche;
+    public Lanche criarLanche(int opcao) {
         switch (opcao) {
             case 1:
-                lanche = LancheFactory.xBurger();
-                break;
+                return LancheFactory.xBurger();
             case 2:
-                lanche = LancheFactory.xSalada();
-                break;
+                return LancheFactory.xSalada();
             case 3:
-                lanche = LancheFactory.xBacon();
-                break;
+                return LancheFactory.xBacon();
             default:
-                return false;
+                return null;
         }
-        pedido.adicionarItem(lanche);
-        return true;
+    }
+
+    public void adicionarItem(Pedido pedido, ItemCardapio item) {
+        pedido.adicionarItem(item);
     }
 
     public double calcularTotalDoDia() {

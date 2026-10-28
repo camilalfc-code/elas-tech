@@ -1,5 +1,6 @@
 package app;
 
+import cardapio.Lanche;
 import pedido.Pedido;
 
 public class Main {
@@ -19,8 +20,16 @@ public class Main {
                     Pedido pedido = sistema.criarPedido(menu.lerNomeCliente());
                     do {
                         int escolha = menu.lerOpcaoLanche();
-                        if (!sistema.adicionarLanche(pedido, escolha)) {
+                        Lanche lanche = sistema.criarLanche(escolha);
+
+                        if (lanche == null) {
                             menu.exibirMensagem("Opção inválida.");
+                        } else {
+                            if (menu.perguntarRetirar("queijo")) lanche.setQueijo(false);
+                            if (menu.perguntarRetirar("alface")) lanche.setAlface(false);
+                            if (menu.perguntarRetirar("tomate")) lanche.setTomate(false);
+                            if (menu.perguntarRetirar("cebola")) lanche.setCebola(false);
+                            sistema.adicionarItem(pedido, lanche);
                         }
                     } while (menu.perguntarMaisItem());
                     break;

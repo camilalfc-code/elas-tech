@@ -48,6 +48,12 @@ public class MenuConsole {
         return resposta.equalsIgnoreCase("s");
     }
 
+    public boolean perguntarRetirar(String ingrediente) {
+        System.out.print("Retirar " + ingrediente + "? (s/n): ");
+        String resposta = sc.nextLine();
+        return resposta.equalsIgnoreCase("s");
+    }
+
     public void exibirPedido(Pedido pedido) {
         System.out.println("--- Pedido #" + pedido.getNumero() + " ---");
         System.out.println("Cliente: " + pedido.getNomeCliente());
