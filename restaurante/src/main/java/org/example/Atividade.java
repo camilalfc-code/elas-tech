@@ -234,12 +234,9 @@ double getPreco();
 }
 A classe Lanche deve implementar essa interface.
 Agora faça uma mudança na classe Pedido: troque a lista de Lanche por:
-
 private ArrayList<ItemCardapio> itens;
-
 ⚠️ Troque também o parâmetro do metodo adicionarItem: ele recebe ItemCardapio, não Lanche.
 Sem isso, você não consegue adicionar um adicional ao pedido.
-
 Porque, a partir daqui, um item do pedido pode ser um lanche puro ou um lanche com adicionais.
 Os adicionais também implementarão ItemCardapio, mas não serão objetos da classe Lanche.
 Ao usar a interface como tipo da lista, você pode guardar os dois tipos de objeto.
@@ -311,6 +308,7 @@ Como esses números são armazenados de forma aproximada, a tolerância evita qu
 representação faça um teste falhar.
 Em sistemas financeiros reais, double não é a melhor escolha para representar dinheiro.
 Para este projeto, use double com tolerância nos testes.
+
 
 NÍVEL 3 — O restaurante fica profissional
 3.1 — Personalizar o lanche

@@ -1,6 +1,6 @@
 package app;
 
-import cardapio.Lanche;
+import cardapio.ItemCardapio;
 import pedido.Pedido;
 
 import java.util.Scanner;
@@ -24,6 +24,7 @@ public class MenuConsole {
         sc.nextLine();
         return opcao;
         }
+
 
     public String lerNomeCliente() {
         System.out.print("Nome do cliente: ");
@@ -50,15 +51,17 @@ public class MenuConsole {
     public void exibirPedido(Pedido pedido) {
         System.out.println("--- Pedido #" + pedido.getNumero() + " ---");
         System.out.println("Cliente: " + pedido.getNomeCliente());
-        for (Lanche lanche : pedido.getItens()) {
-            System.out.printf("- %s: R$ %.2f%n", lanche.getNome(), lanche.getPreco());
+        for (ItemCardapio item : pedido.getItens()) {
+            System.out.printf("- %s: R$ %.2f%n", item.getDescricao(), item.getPreco());
         }
         System.out.printf("Total: R$ %.2f%n", pedido.calcularTotal());
+        System.out.println();
     }
 
     public void exibirFechamentoDoDia(double total) {
         System.out.println("=== FECHAMENTO DO DIA ===");
         System.out.printf("Total vendido: R$ %.2f%n", total);
+        System.out.println();
     }
 
     public void exibirMensagem(String mensagem) {

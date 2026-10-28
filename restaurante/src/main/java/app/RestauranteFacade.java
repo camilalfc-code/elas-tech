@@ -1,6 +1,7 @@
 package app;
 
 import cardapio.Lanche;
+import cardapio.LancheFactory;
 import pedido.GerenciadorPedidos;
 import pedido.Pedido;
 
@@ -18,13 +19,13 @@ public class RestauranteFacade {
         Lanche lanche;
         switch (opcao) {
             case 1:
-                lanche = new Lanche("X-Burger", 16.00);
+                lanche = LancheFactory.xBurger();
                 break;
             case 2:
-                lanche = new Lanche("X-Salada", 18.00);
+                lanche = LancheFactory.xSalada();
                 break;
             case 3:
-                lanche = new Lanche("X-Bacon", 22.00);
+                lanche = LancheFactory.xBacon();
                 break;
             default:
                 return false;

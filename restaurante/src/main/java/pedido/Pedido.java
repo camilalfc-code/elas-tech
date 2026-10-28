@@ -1,31 +1,30 @@
 package pedido;
 
-import cardapio.Lanche;
-
+import cardapio.ItemCardapio;
 import java.util.ArrayList;
 
 public class Pedido {
     private int numero;
     private String nomeCliente;
-    private ArrayList<Lanche> itens = new ArrayList<>();
+    private ArrayList<ItemCardapio> itens = new ArrayList<>();
 
     public Pedido(int numero, String nomeCliente) {
         this.numero = numero;
         setNomeCliente(nomeCliente);
     }
 
-    public void adicionarItem(Lanche lanche) {
-        itens.add(lanche);
+    public void adicionarItem(ItemCardapio item) {
+        itens.add(item);
     }
 
-    public ArrayList<Lanche> getItens() {
+    public ArrayList<ItemCardapio> getItens() {
         return itens;
     }
 
     public double calcularTotal() {
         double total = 0;
-        for (Lanche lanche : itens) {
-            total += lanche.getPreco();
+        for (ItemCardapio item : itens) {
+            total += item.getPreco();
         }
         return total;
     }

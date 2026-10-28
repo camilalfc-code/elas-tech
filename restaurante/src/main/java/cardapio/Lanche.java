@@ -1,6 +1,6 @@
 package cardapio;
 
-public class Lanche {
+public class Lanche implements ItemCardapio {
     private String nome;
     private double preco;
 
@@ -30,4 +30,10 @@ public class Lanche {
         }
         this.preco = preco;
     }
+
+    @Override
+    public String getDescricao() {
+        return nome;
+    }
+
 }
