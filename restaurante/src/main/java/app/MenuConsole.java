@@ -3,6 +3,7 @@ package app;
 import cardapio.ItemCardapio;
 import pedido.Pedido;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class MenuConsole {
@@ -96,9 +97,13 @@ public class MenuConsole {
         return numero;
     }
 
-    public void exibirFechamentoDoDia(double total) {
+    public void exibirFechamentoDoDia(double total, HashSet<String> combinacoes) {
         System.out.println("=== FECHAMENTO DO DIA ===");
         System.out.printf("Total vendido: R$ %.2f%n", total);
+        System.out.println("Combinações diferentes: " + combinacoes.size());
+        for (String combinacao : combinacoes) {
+            System.out.println("- " + combinacao);
+        }
         System.out.println();
     }
 

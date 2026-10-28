@@ -7,6 +7,7 @@ import pedido.GerenciadorPedidos;
 import pedido.Pedido;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 public class RestauranteFacade {
 
@@ -47,6 +48,10 @@ public class RestauranteFacade {
 
     public double calcularTotalDoDia() {
         return gerenciador.calcularTotalDoDia();
+    }
+
+    public HashSet<String> getCombinacoes() {
+        return gerenciador.getCombinacoes();
     }
 
     public Collection<Pedido> getPedidos() {

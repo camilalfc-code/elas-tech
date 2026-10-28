@@ -1,7 +1,10 @@
 package pedido;
 
+import cardapio.ItemCardapio;
+
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class GerenciadorPedidos {
     private HashMap<Integer, Pedido> pedidos = new HashMap<>();
@@ -32,6 +35,16 @@ public class GerenciadorPedidos {
             total += p.calcularTotal();
         }
         return total;
+    }
+
+    public HashSet<String> getCombinacoes() {
+        HashSet<String> combinacoes = new HashSet<>();
+        for (Pedido p : pedidos.values()) {
+            for (ItemCardapio item : p.getItens()) {
+                combinacoes.add(item.getDescricao());
+            }
+        }
+        return combinacoes;
     }
 
 }

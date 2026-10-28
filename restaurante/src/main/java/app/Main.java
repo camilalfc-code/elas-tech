@@ -30,7 +30,7 @@ public class Main {
 
                 case 3: {
                     double total = sistema.calcularTotalDoDia();
-                    menu.exibirFechamentoDoDia(total);
+                    menu.exibirFechamentoDoDia(total, sistema.getCombinacoes());
                     break;
                 }
 
@@ -60,14 +60,11 @@ public class Main {
                                     }
                                     break;
                                 }
-                                case 3:
-                                    if (sistema.cancelarPedido(numero)) {
-                                        menu.exibirMensagem("Pedido cancelado.");
-                                        opcaoMod = 0;
-                                    } else {
-                                        menu.exibirMensagem("Não foi possível cancelar o pedido.");
-                                    }
+                                case 3: {
+                                    double total = sistema.calcularTotalDoDia();
+                                    menu.exibirFechamentoDoDia(total, sistema.getCombinacoes());
                                     break;
+                                }
                             }
                         } while (opcaoMod != 0);
                     }
