@@ -17,6 +17,14 @@ public class Pedido {
         itens.add(item);
     }
 
+    public boolean removerItem(int posicao) {
+        if (posicao < 1 || posicao > itens.size()) {
+            return false;
+        }
+        itens.remove(posicao - 1);
+        return true;
+    }
+
     public ArrayList<ItemCardapio> getItens() {
         return itens;
     }
