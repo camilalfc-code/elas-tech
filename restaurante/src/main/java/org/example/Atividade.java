@@ -118,18 +118,23 @@ setNomeCliente(nomeCliente);
 
 1.3 — O GerenciadorPedidos e o fechamento
 Crie a classe GerenciadorPedidos no pacote pedido.
-Ela é quem guarda todos os pedidos do restaurante — e por isso é uma classe separada do Pedido, que cuida de
-uma comanda só. É o S do SOLID na prática: cada classe com uma responsabilidade.
+Ela é quem guarda todos os pedidos do restaurante — e por isso é uma classe
+separada do Pedido, que cuida de
+uma comanda só. É o S do SOLID na prática: cada classe com uma
+responsabilidade.
 
 Atributos:
 private HashMap<Integer, Pedido> pedidos = new HashMap<>();
 private int contadorPedidos = 1;
 
 Métodos:
-criarPedido(String nomeCliente) — gera o número, cria o Pedido, guarda no mapa e devolve o pedido criado
-buscarPedido(int numero) — devolve o Pedido daquele número, ou null se não existir
+criarPedido(String nomeCliente) — gera o número, cria o Pedido, guarda no
+mapa e devolve o pedido criado
+buscarPedido(int numero) — devolve o Pedido daquele número, ou null se não
+existir
 getPedidos() — devolve a coleção de pedidos para quem for exibir
-calcularTotalDoDia() — percorre todos os pedidos e soma o calcularTotal() de cada um
+calcularTotalDoDia() — percorre todos os pedidos e soma o calcularTotal()
+de cada um
 public Pedido criarPedido(String nomeCliente) {
 Pedido novo = new Pedido(contadorPedidos, nomeCliente);
 pedidos.put(novo.getNumero(), novo);
@@ -138,18 +143,29 @@ return novo;
 }
 
 💡 Pra somar todos os pedidos do dia: for (Pedido p : pedidos.values()).
-💡 O GerenciadorPedidos não imprime nada. Ele devolve os pedidos; quem mostra na tela é o MenuConsole (item 1.4).
+💡 O GerenciadorPedidos não imprime nada. Ele devolve os pedidos; quem
+mostra na tela é o MenuConsole (item 1.4).
 
 ⚠️ Cuidado com o número do pedido no HashMap, e leia isto com atenção:
-O HashMap não deixa dois pedidos terem o mesmo número — mas não é porque ele recusa. É porque ele substitui.
-Por isso, nunca peça para o usuário digitar o número de um pedido novo no Scanner. Quem gera o número é o próprio GerenciadorPedidos, usando contadorPedidos++ toda vez que um pedido nasce. Assim a repetição nunca acontece ao criar!
-Já quando o usuário quiser buscar um pedido existente pelo número, aí sim a pessoa digita o número e você pode usar pedidos.containsKey(numero) (ou checar se pedidos.get(numero) != null) para conferir se aquele pedido realmente existe antes de mexer nele.
+O HashMap não deixa dois pedidos terem o mesmo número — mas não é porque
+ele recusa. É porque ele substitui.
+Por isso, nunca peça para o usuário digitar o número de um pedido novo no
+Scanner. Quem gera o número é o próprio GerenciadorPedidos, usando
+contadorPedidos++ toda vez que um pedido nasce. Assim a repetição nunca
+acontece ao criar!
+Já quando o usuário quiser buscar um pedido existente pelo número, aí sim
+a pessoa digita o número e você pode usar pedidos.containsKey(numero)
+(ou checar se pedidos.get(numero) != null) para conferir se aquele pedido
+realmente existe antes de mexer nele.
 
 1.4 — Menu principal e MenuConsole
-Crie a classe MenuConsole no pacote app. Ela será responsável por conversar com a pessoa que está usando o sistema.
-O menu principal tem as opções definidas no item 1.5. Aqui você cria a classe que sabe exibi-las e lê-las.
+Crie a classe MenuConsole no pacote app. Ela será responsável por conversar
+com a pessoa que está usando o sistema.
+O menu principal tem as opções definidas no item 1.5. Aqui você cria a
+classe que sabe exibi-las e lê-las.
 
-O MenuConsole deve cuidar da leitura das opções e dos dados digitados, além de exibir as mensagens e os resultados.
+O MenuConsole deve cuidar da leitura das opções e dos dados digitados,
+além de exibir as mensagens e os resultados.
 Você pode organizar a classe com métodos como:
 exibirMenu()
 lerOpcao()
@@ -157,14 +173,18 @@ lerOpcao()
 exibirPedido()
  exibirFechamentoDoDia()
 
-Esses nomes são sugestões para organizar o código. Você pode usar outros nomes, desde que mantenha as
+Esses nomes são sugestões para organizar o código. Você pode usar outros
+nomes, desde que mantenha as
 responsabilidades separadas.
-O Main deve ficar responsável por iniciar o sistema e controlar o fluxo principal.
-Ele não deve usar System.out.println() para exibir mensagens nem Scanner para ler dados diretamente.
+O Main deve ficar responsável por iniciar o sistema e controlar o fluxo
+principal.
+Ele não deve usar System.out.println() para exibir mensagens nem Scanner
+para ler dados diretamente.
 Essa interação fica no MenuConsole.
 
 1.5 — Criar pedidos e fechar o dia
-No primeiro nível, os lanches podem ser criados diretamente na RestauranteFacade, com nome e preço definidos no código. O cardápio é:
+No primeiro nível, os lanches podem ser criados diretamente na
+RestauranteFacade, com nome e preço definidos no código. O cardápio é:
 X-Burger — R$ 16,00
 X-Salada — R$ 18,00
 X-Bacon — R$ 22,00
@@ -176,15 +196,19 @@ Text
 3 - Fechar restaurante
 0 - Sair
 
-A leitura de cada dado e a exibição de cada mensagem ficam no MenuConsole (item 1.4);
+A leitura de cada dado e a exibição de cada mensagem ficam no MenuConsole
+(item 1.4);
 o Main só chama os métodos dele e passa o resultado para a Facade.
-Ao registrar um pedido, o MenuConsole pede o nome do cliente e o Main cria o pedido pela Facade.
-Depois o MenuConsole pergunta qual lanche do cardápio a pessoa quer, e pergunta se ela quer adicionar mais um item,
+Ao registrar um pedido, o MenuConsole pede o nome do cliente e o Main cria
+o pedido pela Facade.
+Depois o MenuConsole pergunta qual lanche do cardápio a pessoa quer, e
+pergunta se ela quer adicionar mais um item,
 até responder que não.
 
 ⚠️ Importante: crie um novo objeto Lanche a cada escolha de item do cardápio.
 Não guarde um único objeto mutável para reutilizá-lo em todos os pedidos.
-Nos próximos níveis o cliente poderá personalizar o lanche, e uma alteração em um pedido não pode modificar
+Nos próximos níveis o cliente poderá personalizar o lanche, e uma alteração
+em um pedido não pode modificar
 outro pedido.
 
 — o Main só recebe o double pronto e passa para o MenuConsole exibir:
@@ -193,9 +217,11 @@ outro pedido.
 double total = sistema.calcularTotalDoDia();
 menu.exibirFechamentoDoDia(total);
 
-💡 O for que percorre os pedidos já está dentro do GerenciadorPedidos, no item 1.3.
+💡 O for que percorre os pedidos já está dentro do GerenciadorPedidos,
+no item 1.3.
 Não repita essa lógica na Facade nem no Main.
-Neste nível, o objetivo é ter um sistema funcional: escolher lanches, criar pedidos, calcular valores e fazer o
+Neste nível, o objetivo é ter um sistema funcional: escolher lanches,
+criar pedidos, calcular valores e fazer o
 fechamento.
 
 
