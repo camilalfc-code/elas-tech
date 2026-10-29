@@ -29,12 +29,35 @@ public class Aula {
         repetir(() -> System.out.println("oi"));
         System.out.println();
 
+        //operação
+        mostrarResultado(n -> n * 2, 5);
+        mostrarResultado(n -> n * n, 5);
+        mostrarResultado(n -> -n, 5);
+        System.out.println();
+
+        //condição
+        executarSe(n -> n % 2 == 0, 4, () -> System.out.println("é par!"));
+        executarSe(n -> n % 2 == 0, 7, () -> System.out.println("é par!"));
+        System.out.println();
+
     }
 
     //Acao
     static void repetir(Acao acao) {
         acao.executar();
         acao.executar();
+    }
+
+    //operação
+    static void mostrarResultado(Operacao op, int valor) {
+        System.out.println(op.aplicar(valor));
+    }
+
+    //condição
+    static void executarSe(Condicao cond, int valor, Acao acao) {
+        if (cond.testar(valor)) {
+            acao.executar();
+        }
     }
 
 
