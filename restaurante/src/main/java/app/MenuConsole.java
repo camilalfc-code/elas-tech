@@ -78,6 +78,12 @@ public class MenuConsole {
         return resposta.equalsIgnoreCase("s");
     }
 
+    public boolean perguntarAdicional(String adicional, double valor) {
+        System.out.print("Adicionar " + adicional + " (+ R$ " + String.format("%.2f", valor) + ")? (s/n): ");
+        String resposta = sc.nextLine();
+        return resposta.equalsIgnoreCase("s");
+    }
+
     public void exibirPedido(Pedido pedido) {
         System.out.println("--- Pedido #" + pedido.getNumero() + " ---");
         System.out.println("Cliente: " + pedido.getNomeCliente());

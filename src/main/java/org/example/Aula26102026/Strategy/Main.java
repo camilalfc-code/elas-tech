@@ -9,7 +9,7 @@ public class Main {
         // 90.0
 
 
-        compra = new Compra(new DescontoVIP());
+
 
         System.out.println(compra.calcularPrecoFinal(100));
         // 80.0

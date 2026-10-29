@@ -1,8 +1,6 @@
 package app;
 
-import cardapio.ItemCardapio;
-import cardapio.Lanche;
-import cardapio.LancheFactory;
+import cardapio.*;
 import pedido.GerenciadorPedidos;
 import pedido.Pedido;
 
@@ -32,6 +30,14 @@ public class RestauranteFacade {
 
     public void adicionarItem(Pedido pedido, ItemCardapio item) {
         pedido.adicionarItem(item);
+    }
+
+    public ItemCardapio comCheddar(ItemCardapio item) {
+        return new ComCheddar(item);
+    }
+
+    public ItemCardapio comBaconExtra(ItemCardapio item) {
+        return new ComBaconExtra(item);
     }
 
     public Pedido buscarPedido(int numero) {
