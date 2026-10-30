@@ -1,5 +1,6 @@
 package app;
 
+import cardapio.ItemCardapio;
 import cardapio.Lanche;
 import pedido.Pedido;
 
@@ -98,7 +99,12 @@ public class Main {
                 if (menu.perguntarRetirar("alface")) lanche.setAlface(false);
                 if (menu.perguntarRetirar("tomate")) lanche.setTomate(false);
                 if (menu.perguntarRetirar("cebola")) lanche.setCebola(false);
-                sistema.adicionarItem(pedido, lanche);
+
+                ItemCardapio item = lanche;
+                if (menu.perguntarAdicional("cheddar", 4.00)) item = sistema.comCheddar(item);
+                if (menu.perguntarAdicional("bacon extra", 6.00)) item = sistema.comBaconExtra(item);
+
+                sistema.adicionarItem(pedido, item);
                 maisItens = menu.perguntarMaisItem();
             }
         } while (maisItens);
