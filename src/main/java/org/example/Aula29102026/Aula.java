@@ -25,7 +25,6 @@ public class Aula {
         numeros.stream() abre o “fluxo” de dados da lista.
         .filter(n -> n % 2 == 0) deixa passar só quem tem resto 0 na divisão por 2, ou seja, os pares.
         .collect(Collectors.toList()) junta o resultado numa nova lista, que é o que o enunciado pede.
-        O println() vazio no final é a linha em branco de sempre.
          */
 
         List<String> frutas = List.of("maçã", "banana", "uva", "laranja");
@@ -36,10 +35,10 @@ public class Aula {
         /*
         .map(fruta -> fruta.toUpperCase()) pega cada fruta e a transforma na versão em maiúsculas.
         .forEach(...) percorre o resultado e imprime cada uma na tela, que é o que o enunciado pede.
-        O println() vazio no final é a sua linha em branco de sempre.
-         */
+        */
 
-        List<String> cidades = List.of("São Paulo", "Santos", "Araraquara", "Salvador", "Curitiba", "São Carlos");
+        List<String> cidades = List.of("São Paulo", "Santos", "Araraquara", "Salvador", "Curitiba",
+                "São Carlos");
         long quantidade = cidades.stream()
                 .filter(cidade -> cidade.startsWith("S"))
                 .count();
@@ -48,7 +47,57 @@ public class Aula {
         /*
         .filter(cidade -> cidade.startsWith("S")) deixa passar só as cidades que começam com “S”.
         .count() conta quantas sobraram. Ele devolve um long, por isso a variável é long e não int.
-        O println() vazio no final é a linha em branco de sempre.
+        */
+
+
+        Consumer<String> saudacao = nome -> System.out.println("Olá, " + nome);
+        saudacao.accept("Flora");
+        Consumer<String> maiusculo = nome -> System.out.println(nome.toUpperCase());
+        maiusculo.accept("Flora");
+        System.out.println();
+        /*
+        Consumer<String> recebe um String e não devolve nada, por isso o corpo só imprime.
+        .accept("Flora") é o que dispara o Consumer, igual ao .run() do Runnable.
+        O segundo Consumer faz a mesma coisa, mas com toUpperCase().
+        */
+
+        Supplier<String> avisoSistema = () -> "Aviso: O sistema está online!";
+        System.out.println(avisoSistema.get());
+        Supplier<Integer> geradorNumero = () -> new Random().nextInt(100);
+        System.out.println("Primeira chamada: " + geradorNumero.get());
+        System.out.println("Segunda chamada: " + geradorNumero.get());
+        System.out.println();
+        /*
+        () -> "texto" não recebe nada e devolve o texto. O .get() é o que dispara, igual ao .accept() e ao
+        .run().
+        new Random().nextInt(100) sorteia um número de 0 a 99. Como o sorteio roda a cada .get(), as duas
+        chamadas dão números diferentes (de vez em quando podem coincidir por sorte, aí é só rodar de novo
+        kkk).
+         */
+
+        Predicate<Integer> maiorQueDez = numero -> numero > 10;
+        System.out.println("O número 5 é maior que 10? " + maiorQueDez.test(5));
+        System.out.println("O número 15 é maior que 10? " + maiorQueDez.test(15));
+        Predicate<String> textoVazio = texto -> texto.isEmpty();
+        System.out.println("A String \"\" está vazia? " + textoVazio.test(""));
+        System.out.println("A String \"Java\" está vazia? " + textoVazio.test("Java"));
+        System.out.println();
+        /*
+        Predicate<Integer> recebe um número e devolve true ou false.
+        .test(...) é o que dispara, o “.run()/.accept()/.get()” do Predicate.
+        No segundo, o isEmpty() só dá true para a String "".
+        As barras \" servem para imprimir as aspas dentro do texto.
+         */
+
+        Function<Integer, String> formatarNota = numero -> "Nota fiscal nº: " + numero;
+        System.out.println(formatarNota.apply(1542));
+        Function<String, Integer> contarLetras = palavra -> palavra.length();
+        System.out.println("A palavra 'Professor' tem " + contarLetras.apply("Professor") + " letras.");
+        System.out.println();
+        /*
+        Function<Integer, String>: o primeiro tipo é o que entra (Integer) e o segundo é o que sai (String).
+        .apply(...) é o que dispara, o “.test()/.get()” da Function.
+        No segundo, entra String e sai Integer (a quantidade de letras).
          */
     }
 
