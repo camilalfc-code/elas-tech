@@ -30,4 +30,4 @@ Testes com JUnit 5 em `src/test/java`.
 
 ## Vídeo
 
-(link do vídeo aqui)
+([link do vídeo aqui](https://drive.google.com/file/d/1WEh1O4-p3f9KFZ7AKrDNZUJxgj9w2jct/view?usp=sharing))
