@@ -1,1 +1,86 @@
+package com.example.aulas.AtividadeREST.controller;
+
+import com.example.aulas.AtividadeREST.model.Pet;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/pets")
+//O @RequestMapping("/pets") é o prefixo: toda rota dentro dessa classe já começa com /pets.
+// Por isso o @GetMapping do metodo fica vazio, já que ele responde exatamente em /pets.
+public class PetController {
+
+    @GetMapping
+    public String boasVindas() {
+        return "Bem-vinda ao Pet Shop Elas Tech!";
+    }
+
+    @GetMapping("/horario")
+    public String horario() {
+        return "Abrimos de segunda a sábado, das 8h às 18h.";
+        //Repare que aqui o @GetMapping tem o "/horario".
+        // Ele se junta com o prefixo /pets e vira /pets/horario.
+    }
+
+    @GetMapping("/destaque")
+    public Pet destaque() {
+        return new Pet("Thor", "Cachorro", 3);
+        //Repare que o metodo devolve um Pet em vez de String.
+        // O Spring pega o objeto, usa os getters e transforma em JSON sozinho.
+    }
+
+    @GetMapping("/adotar/{nome}")
+    public String adotar(@PathVariable String nome) {
+        return "Parabéns! Você adotou " + nome + "!";
+        //O {nome} na rota é um espaço que muda a cada acesso,
+        // e o @PathVariable pega o que a pessoa escreveu ali e entrega na variável nome.
+    }
+
+    @GetMapping("/banho")
+    public String banho(@RequestParam(defaultValue = "Seu pet") String pet) {
+        return pet + " está tomando banho!";
+        //O @RequestParam pega o valor que vem depois do ?pet=.
+        // E o defaultValue é o que vale quando ninguém manda nada,
+        // que é exatamente o “Seu pet” que a atividade pede.
+    }
+
+    @GetMapping("/novo/{nome}")
+    public Pet novo(@PathVariable String nome) {
+        return new Pet(nome, "Gato", 1);
+        //O nome vem do caminho, e a espécie (“Gato”) e a idade (1, de filhote) ficam fixas.
+    }
+
+    @GetMapping("/idade-humana")
+    public String idadeHumana(@RequestParam int anos) {
+        int idadeHumana = anos * 7;
+        return anos + " anos de pet equivalem a " + idadeHumana + " anos humanos!";
+        //Como o parâmetro é int, o Spring converte o texto da URL em número sozinho.
+        // E repare que aqui não tem defaultValue: isso é de propósito, por causa da pergunta da atividade.
+    }
+
+    /*
+    Depois teste /pets/idade-humana sem o ?anos=. O que acontece? Por quê?
+    Whitelabel Error Page
+    This application has no explicit mapping for /error, so you are seeing this as a fallback.
+    Fri Nov 06 19:34:35 GMT-03:00 2026
+    There was an unexpected error (type=Bad Request, status=400).
+    Por quê?
+    O @RequestParam é obrigatório por padrão.
+    Como a rota precisa do anos pra fazer a conta (anos * 7) e você não mandou nada,
+    o Spring nem chega a executar o metodo.
+    Ele barra a requisição antes e responde 400, que significa “o pedido veio errado, faltou alguma coisa”.
+    Repare na diferença com a rota /banho:
+    lá a gente colocou defaultValue = "Seu pet", então o Spring tinha um valor reserva e não reclamava.
+    Aqui não tem valor reserva, então ele reclama.
+    Aparece o erro 400 (Bad Request), porque o parâmetro anos é obrigatório.
+    Sem o ?anos=, o Spring não tem valor pra passar ao metodo e recusa a requisição.
+     */
+
+    @GetMapping("/consulta")
+    public String consulta(@RequestParam String pet, @RequestParam String vet) {
+        return pet + " tem consulta com a Dra. " + vet + "!";
+        //Cada @RequestParam pega o valor do nome correspondente na URL:
+        // pet pega o que vem depois de ?pet= e vet pega o que vem depois de &vet=.
+    }
+
+}
 
